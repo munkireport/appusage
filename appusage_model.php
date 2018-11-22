@@ -14,6 +14,9 @@ class Appusage_model extends \Model
         $this->rs['last_time_epoch'] = 0;
         $this->rs['last_time'] = "";
         $this->rs['number_times'] = 0;
+        
+        // Add local config
+        configAppendFile(__DIR__ . '/config.php');
     }
 
     // ------------------------------------------------------------------------
