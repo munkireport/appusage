@@ -7,7 +7,8 @@ if [ "$1" = 'manualcheck' ]; then
 fi
 
 # Munki database check
-
+CWD=$(dirname $0)
+CACHEDIR="$CWD/cache/"
 MANAGEDINSTALLDIR=$(/usr/bin/python -c "from Foundation import CFPreferencesCopyAppValue; print CFPreferencesCopyAppValue('ManagedInstallDir', 'ManagedInstalls')")
 
 if [[ -f "${MANAGEDINSTALLDIR}"/application_usage.sqlite ]]; then
@@ -15,7 +16,7 @@ if [[ -f "${MANAGEDINSTALLDIR}"/application_usage.sqlite ]]; then
 /usr/bin/sqlite3 "${MANAGEDINSTALLDIR}"/application_usage.sqlite <<!
 .headers off
 .mode csv
-.output /usr/local/munki/preflight.d/cache/appusage.csv
+.output ${CACHEDIR}appusage.csv
 SELECT event, bundle_id, app_version, app_path, number_times, last_time FROM application_usage;
 !
 
@@ -25,7 +26,7 @@ elif [[ -f /private/var/db/application_usage.sqlite ]]; then
     /usr/bin/sqlite3 /private/var/db/application_usage.sqlite <<!
 .headers off
 .mode csv
-.output /usr/local/munki/preflight.d/cache/appusage.csv
+.output ${CACHEDIR}appusage.csv
 SELECT event, bundle_id, app_version, app_path, number_times, last_time FROM application_usage;
 !
 
