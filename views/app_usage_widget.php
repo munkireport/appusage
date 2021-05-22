@@ -1,10 +1,9 @@
 <div class="col-md-4">
-		<div class="panel panel-default"  id="appusage-widget">
-            <div class="panel-heading" data-container="body" data-i18n="[title]appusage.tooltip">
-                <h3 class="panel-title"><i class="fa fa-rocket"></i>
-                    <span data-i18n="appusage.title"></span>                    
-                    <list-link data-url="/show/listing/appusage/appusage/"></list-link>
-                </h3>
+		<div class="card"  id="appusage-widget">
+            <div class="card-header" data-container="body" data-i18n="[title]appusage.tooltip">
+                <i class="fa fa-rocket"></i>
+                <span data-i18n="appusage.title"></span>
+                <a href="/show/listing/appusage/appusage/" class="pull-right"><i class="fa fa-list"></i></a>
             </div>
     <div class="list-group scroll-box"></div>
 	</div><!-- /panel -->
