@@ -9,7 +9,7 @@ fi
 # Munki database check
 CWD=$(dirname $0)
 CACHEDIR="$CWD/cache/"
-MANAGEDINSTALLDIR=$(/usr/bin/python -c "from Foundation import CFPreferencesCopyAppValue; print CFPreferencesCopyAppValue('ManagedInstallDir', 'ManagedInstalls')")
+MANAGEDINSTALLDIR=$(osascript -l JavaScript -e "ObjC.import('Foundation'); ObjC.unwrap($.NSUserDefaults.alloc.initWithSuiteName('ManagedInstalls').objectForKey('ManagedInstallDir'))")
 
 if [[ -f "${MANAGEDINSTALLDIR}"/application_usage.sqlite ]]; then
 
