@@ -62,42 +62,48 @@ class Appusage_model extends \Model
         // List of bundle IDs to ignore
         $bundleid_ignorelist = is_array(conf('appusage_ignorelist')) ? conf('appusage_ignorelist') : array();
         $regex = '/^'.implode('|', $bundleid_ignorelist).'$/';
-                
-        // Split into lines
-        foreach(str_getcsv($data, "\n") as $line)
-        {
-            // Skip if empty line
-            if(trim($line) === ''){
-                continue;
-            }
 
-            // Split line
-            $appusage_line = str_getcsv($line);
+        // Check if we have data
+        if(is_null($data) || ! $data || $data == ""){
+            print_r("Error processing appusage module request: No data found");
+        } else {
 
-            if ( count($appusage_line) > 1)
+            // Split into lines
+            foreach(str_getcsv($data, "\n") as $line)
             {
-                // Check if we should skip this bundle ID
-                if (preg_match($regex, $appusage_line[1])) {
+                // Skip if empty line
+                if(!is_null($line) && trim($line) === ''){
                     continue;
                 }
-                
-                $this->event = $appusage_line[0];
-                $this->bundle_id = $appusage_line[1];
-                $this->app_version = $appusage_line[2];
-                $this->app_path = $appusage_line[3];
 
-                $app_array_explode = explode('/',$appusage_line[3]);
-                $app_array = array_pop($app_array_explode);
-                $app_name_full = substr($app_array, 0, -4);
-                $this->app_name = $app_name_full;
+                // Split line
+                $appusage_line = str_getcsv($line);
 
-                $this->number_times = $appusage_line[4];
-                $dt = new DateTime('@'.$appusage_line[5]);
-                $this->last_time = ($dt->format('Y-m-d H:i:s'));
-                $this->last_time_epoch = $appusage_line[5];
+                if ( count($appusage_line) > 1)
+                {
+                    // Check if we should skip this bundle ID
+                    if (preg_match($regex, $appusage_line[1])) {
+                        continue;
+                    }
 
-                $this->id = '';
-                $this->create();
+                    $this->event = $appusage_line[0];
+                    $this->bundle_id = $appusage_line[1];
+                    $this->app_version = $appusage_line[2];
+                    $this->app_path = $appusage_line[3];
+
+                    $app_array_explode = explode('/',$appusage_line[3]);
+                    $app_array = array_pop($app_array_explode);
+                    $app_name_full = substr($app_array, 0, -4);
+                    $this->app_name = $app_name_full;
+
+                    $this->number_times = $appusage_line[4];
+                    $dt = new DateTime('@'.$appusage_line[5]);
+                    $this->last_time = ($dt->format('Y-m-d H:i:s'));
+                    $this->last_time_epoch = $appusage_line[5];
+
+                    $this->id = '';
+                    $this->create();
+                }
             }
         }
     } // end process()
