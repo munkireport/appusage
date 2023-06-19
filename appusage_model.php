@@ -34,7 +34,7 @@ class Appusage_model extends \Model
                     ".get_machine_group_filter()."
                     AND event = 'launch'
                     AND app_name <> ''
-                    GROUP BY app_name
+                    GROUP BY app_name, event
                     ORDER BY count DESC";
 
         foreach ($this->query($sql) as $obj) {
