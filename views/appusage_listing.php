@@ -18,34 +18,34 @@ $this->view('listings/default',
     ],
     [
       "column" => "appusage.event",
-	  "i18n_header" => "appusage.event",
-	  "formatter" => "appNlocalizeEventameToLink",	  
+    "i18n_header" => "appusage.event",
+    "formatter" => "appNlocalizeEventameToLink",
     ],
     [
       "column" => "appusage.app_name",
-	  "i18n_header" => "appusage.appname",
-	  "formatter" => "appNameToLink",
+    "i18n_header" => "appusage.appname",
+    "formatter" => "appNameToLink",
     ],
     [
       "column" => "appusage.last_time_epoch",
-	  "i18n_header" => "appusage.lastevent",
-	  "formatter" => "timestampToMoment",
+    "i18n_header" => "appusage.lastevent",
+    "formatter" => "timestampToMoment",
     ],
-	[
-		"column" => "appusage.number_times",
-		"i18n_header" => "appusage.count",
-	],
-	[
-		"column" => "appusage.app_version",
-		"i18n_header" => "version",
-	],
-	[
-		"column" => "appusage.app_path",
-		"i18n_header" => "path",
-	],
-	[
-		"column" => "appusage.bundle_id",
-		"i18n_header" => "bundle_id",
-	],
+  [
+    "column" => "appusage.number_times",
+    "i18n_header" => "appusage.count",
+  ],
+  [
+    "column" => "appusage.app_version",
+    "i18n_header" => "version",
+  ],
+  [
+    "column" => "appusage.app_path",
+    "i18n_header" => "path",
+  ],
+  [
+    "column" => "appusage.bundle_id",
+    "i18n_header" => "bundle_id",
+  ],
   ]
 ]);

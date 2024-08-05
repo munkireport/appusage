@@ -44,7 +44,7 @@ class Appusage_controller extends Module_controller
         $appusage = new Appusage_model;
         $obj->view('json', array('msg' => $appusage->retrieve_records($serial_number)));
     }
-    
+
      /**
      * Retrieve data in json format for app launch widget
      *
@@ -52,14 +52,13 @@ class Appusage_controller extends Module_controller
      **/
     public function get_applaunch()
     {
-
         $obj = new View();
         
         if (! $this->authorized()) {
             $obj->view('json', array('msg' => array('error' => 'Not authenticated')));
             return;
         }
-        
+
         $applaunches = new Appusage_model;
         $obj->view('json', array('msg' => $applaunches->get_applaunch()));
     }

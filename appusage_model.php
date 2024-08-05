@@ -14,7 +14,7 @@ class Appusage_model extends \Model
         $this->rs['last_time_epoch'] = 0;
         $this->rs['last_time'] = "";
         $this->rs['number_times'] = 0;
-        
+
         // Add local config
         configAppendFile(__DIR__ . '/config.php');
     }
@@ -58,7 +58,7 @@ class Appusage_model extends \Model
     {
         // Delete previous entries
         $this->deleteWhere('serial_number=?', $this->serial_number);
-        
+
         // List of bundle IDs to ignore
         $bundleid_ignorelist = is_array(conf('appusage_ignorelist')) ? conf('appusage_ignorelist') : array();
         $regex = '/^'.implode('|', $bundleid_ignorelist).'$/';

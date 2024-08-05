@@ -2,8 +2,8 @@
 
 # Skip manual check
 if [ "$1" = 'manualcheck' ]; then
-	echo 'Manual check: skipping'
-	exit 0
+    echo 'Manual check: skipping'
+    exit 0
 fi
 
 # Munki database check
@@ -13,7 +13,7 @@ MANAGEDINSTALLDIR=$(osascript -l JavaScript -e "ObjC.import('Foundation'); ObjC.
 
 if [[ -f "${MANAGEDINSTALLDIR}"/application_usage.sqlite ]]; then
 
-/usr/bin/sqlite3 "${MANAGEDINSTALLDIR}"/application_usage.sqlite <<!
+    /usr/bin/sqlite3 "${MANAGEDINSTALLDIR}"/application_usage.sqlite <<!
 .headers off
 .mode csv
 .output ${CACHEDIR}appusage.csv
