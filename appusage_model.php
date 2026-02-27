@@ -69,7 +69,7 @@ class Appusage_model extends \Model
         } else {
 
             // Split into lines
-            foreach(str_getcsv($data, "\n") as $line)
+			foreach(str_getcsv($data, "\n", '"', "\\") as $line)
             {
                 // Skip if empty line
                 if(!is_null($line) && trim($line) === ''){
@@ -77,7 +77,7 @@ class Appusage_model extends \Model
                 }
 
                 // Split line
-                $appusage_line = str_getcsv($line);
+                $appusage_line = str_getcsv($line, ",", '"', "\\");
 
                 if ( count($appusage_line) > 1)
                 {
