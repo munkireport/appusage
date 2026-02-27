@@ -7,9 +7,9 @@ if [ "$1" = 'manualcheck' ]; then
 fi
 
 # Munki database check
-CWD=$(dirname $0)
+CWD=$(/usr/bin/dirname $0)
 CACHEDIR="$CWD/cache/"
-MANAGEDINSTALLDIR=$(osascript -l JavaScript -e "ObjC.import('Foundation'); ObjC.unwrap($.NSUserDefaults.alloc.initWithSuiteName('ManagedInstalls').objectForKey('ManagedInstallDir'))")
+MANAGEDINSTALLDIR=$(/usr/bin/osascript -l JavaScript -e "ObjC.import('Foundation'); ObjC.unwrap($.NSUserDefaults.alloc.initWithSuiteName('ManagedInstalls').objectForKey('ManagedInstallDir'))")
 
 if [[ -f "${MANAGEDINSTALLDIR}"/application_usage.sqlite ]]; then
 
@@ -32,7 +32,5 @@ SELECT event, bundle_id, app_version, app_path, number_times, last_time FROM app
 
 # No database found
 else
-
     echo "Error: App usage database not found!"
-
 fi

@@ -1,4 +1,4 @@
 #!/bin/bash
 
-rm -f "${MUNKIPATH}preflight.d/appusage"
-rm -f "${CACHEPATH}appusage.csv"
+/bin/rm -f "${MUNKIPATH}preflight.d/appusage"
+/bin/rm -f "${CACHEPATH}appusage.csv"

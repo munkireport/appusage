@@ -53,7 +53,7 @@ class Appusage_controller extends Module_controller
     public function get_applaunch()
     {
         $obj = new View();
-        
+
         if (! $this->authorized()) {
             $obj->view('json', array('msg' => array('error' => 'Not authenticated')));
             return;

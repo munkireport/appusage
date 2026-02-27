@@ -11,16 +11,16 @@ CTL="${BASEURL}index.php?/module/${MODULE_NAME}/"
 # Check exit status of curl
 if [ $? = 0 ]; then
 	# Make executable
-	chmod a+x "${MUNKIPATH}preflight.d/appusage"
-	mkdir -p "${MUNKIPATH}preflight.d/cache"
-	touch "${MUNKIPATH}preflight.d/cache/${MODULE_CACHE_FILE}"
+	/bin/chmod a+x "${MUNKIPATH}preflight.d/appusage"
+	/bin/mkdir -p "${MUNKIPATH}preflight.d/cache"
+	/usr/bin/touch "${MUNKIPATH}preflight.d/cache/${MODULE_CACHE_FILE}"
 
 	# Set preference to include this file in the preflight check
 	setreportpref $MODULE_NAME "${CACHEPATH}${MODULE_CACHE_FILE}"
 
 else
 	echo "Failed to download all required components!"
-	rm -f "${MUNKIPATH}preflight.d/appusage"
+	/bin/rm -f "${MUNKIPATH}preflight.d/appusage"
 
 	# Signal that we had an error
 	ERR=1
